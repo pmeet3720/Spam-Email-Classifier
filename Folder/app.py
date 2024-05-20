@@ -6,12 +6,13 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer as ps
 import string
 
+# ps = PorterStemmer()
 # Load the model
-tfidf = pickle.load(open('vectorizer.pkl', 'rb'))
-model = pickle.load(open('model.pkl', 'rb'))
+tfidf = pickle.load(open('vectorizer1.pkl', 'rb'))
+model = pickle.load(open('model1.pkl', 'rb'))
 
 st.title('Spam Email Classifier ')
-input_mail= st.text_area("Enter the Email to verify... ")
+input_mail = st.text_area("Enter the Email to verify... ")
 
 
 
