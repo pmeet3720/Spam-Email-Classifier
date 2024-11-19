@@ -6,18 +6,13 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer as ps
 import string
 
-# ps = PorterStemmer()
-# Load the model
 tfidf = pickle.load(open('vectorizer1.pkl', 'rb'))
 model = pickle.load(open('model1.pkl', 'rb'))
 
 st.title('Spam Email Classifier ')
 input_mail = st.text_area("Enter the Email to verify... ")
 
-
-
-# Preprocess the input
-def transform_text(text):
+def preprocess_text(text):
     text=text.lower()
     text=nltk.word_tokenize(text)
 
@@ -35,18 +30,13 @@ def transform_text(text):
 
     return " ".join(y)
 
-transformed_mail=transform_text(input_mail)
+transformed_mail=preprocess_text(input_mail)
 
 if st.button("Predict"):
-    # Vectorize the input
     vector_input= tfidf.transform([transformed_mail])
 
-
-    # Make predictions
     result= model.predict(vector_input)[0]
 
-
-    # Display the result
     if result==1:
         st.header("Spam Email ")
     else:
